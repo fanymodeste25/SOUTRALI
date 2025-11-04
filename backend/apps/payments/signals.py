@@ -67,3 +67,15 @@ def handle_successful_payment(sender, instance, created, **kwargs):
                 'status': instance.status,
             }
         )
+
+        # Trigger async tasks
+        from .tasks import (
+            send_payment_receipt,
+            send_donation_confirmation,
+            send_donation_notification_to_organizer
+        )
+
+        # Queue tasks
+        send_payment_receipt.delay(str(instance.id))
+        send_donation_confirmation.delay(str(instance.id))
+        send_donation_notification_to_organizer.delay(str(instance.id))

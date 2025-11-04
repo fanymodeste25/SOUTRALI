@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_spectacular',
     'django_redis',
+    'django_celery_beat',
 
     # Local apps
     'apps.users',
