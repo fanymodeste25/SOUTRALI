@@ -231,7 +231,7 @@ body {
 
   /* Decorative Elements */
   .decorative-blob {
-    @apply absolute rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob;
+    @apply absolute rounded-full mix-blend-multiply filter blur-xl opacity-70;
   }
 
   /* Animation Classes */
