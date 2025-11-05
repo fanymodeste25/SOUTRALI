@@ -76,6 +76,42 @@
 
 ## 🚀 Quick Start
 
+### Windows - Lancement Rapide (⚡ Recommandé pour Windows)
+
+Pour les utilisateurs Windows, nous avons créé des scripts batch pour automatiser le setup complet !
+
+1. **Cloner le repository**
+   ```cmd
+   git clone https://github.com/fanymodeste25/SOUTRALI.git
+   cd SOUTRALI
+   ```
+
+2. **Configurer PostgreSQL** (première fois uniquement)
+   ```cmd
+   Double-clic sur: setup_database.bat
+   ```
+
+3. **Lancer l'application complète** (Backend + Frontend)
+   ```cmd
+   Double-clic sur: start_full.bat
+   ```
+
+4. **Accéder à l'application**
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:8000
+   - Admin: http://localhost:8000/admin
+   - API Docs: http://localhost:8000/api/docs
+
+> 📖 **Documentation Windows complète** : [docs/WINDOWS_SETUP.md](docs/WINDOWS_SETUP.md)
+
+**Scripts disponibles** :
+- `setup_database.bat` - Configuration PostgreSQL
+- `start.bat` - Lancer le backend uniquement
+- `start_full.bat` - Lancer backend + frontend + services
+- `stop_all.bat` - Arrêter tous les services
+
+---
+
 ### Using Docker (Recommended)
 
 1. **Clone the repository**
