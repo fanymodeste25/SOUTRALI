@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Layout } from '../components/common/Layout';
 import { CampaignCard } from '../components/campaigns/CampaignCard';
 import { Loading } from '../components/common/Loading';
+import { AfricaMapOutline } from '../components/common/AfricaMap';
 import { campaignService } from '../services/campaign.service';
 import type { Campaign } from '../types';
 import { FiHeart, FiShield, FiZap } from 'react-icons/fi';
@@ -34,6 +35,14 @@ export const HomePage = () => {
     <Layout>
       {/* Hero Section with Vibrant Gradient */}
       <section className="section-hero text-white py-24 md:py-32 relative overflow-hidden">
+        {/* Africa Map Background */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+          <AfricaMapOutline
+            className="w-full h-full max-w-2xl animate-float"
+            strokeColor="white"
+          />
+        </div>
+
         {/* Decorative Blobs */}
         <div className="absolute top-0 -left-4 w-72 h-72 bg-accent-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-coral-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
@@ -115,6 +124,97 @@ export const HomePage = () => {
                 Conçu pour les communautés africaines avec Wave, Orange Money et
                 MTN Mobile Money.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Africa Impact Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="text-gradient-vibrant">Notre Impact en Afrique</span>
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Ensemble, nous transformons des vies à travers tout le continent africain
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Africa Map */}
+            <div className="relative">
+              <div className="relative z-10">
+                <AfricaMapOutline
+                  className="w-full h-auto text-primary-600 drop-shadow-2xl"
+                  strokeColor="currentColor"
+                  animated
+                />
+              </div>
+              {/* Decorative dots on map */}
+              <div className="absolute top-1/4 left-1/3 w-4 h-4 bg-accent-500 rounded-full animate-pulse shadow-lg"></div>
+              <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-coral-500 rounded-full animate-pulse shadow-lg" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-primary-500 rounded-full animate-pulse shadow-lg" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute top-1/2 left-1/4 w-3 h-3 bg-indigo-500 rounded-full animate-pulse shadow-lg" style={{ animationDelay: '1.5s' }}></div>
+              <div className="absolute bottom-1/4 right-1/3 w-4 h-4 bg-accent-600 rounded-full animate-pulse shadow-lg" style={{ animationDelay: '2s' }}></div>
+            </div>
+
+            {/* Impact Stats */}
+            <div className="space-y-8">
+              <div className="card-gradient p-8 transform hover:scale-105 transition-transform">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <span className="text-3xl font-bold text-white">12</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Pays Actifs</h3>
+                    <p className="text-gray-600">Présents dans 12 pays africains et en expansion continue</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-gradient p-8 transform hover:scale-105 transition-transform">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <span className="text-3xl font-bold text-white">50K+</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Communautés Aidées</h3>
+                    <p className="text-gray-600">Plus de 50 000 personnes ont bénéficié de nos campagnes</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-gradient p-8 transform hover:scale-105 transition-transform">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-coral-500 to-coral-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <span className="text-2xl font-bold text-white">100%</span>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Transparent</h3>
+                    <p className="text-gray-600">Traçabilité complète de chaque don via blockchain</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Countries badges */}
+          <div className="mt-16 text-center">
+            <p className="text-gray-600 mb-6 font-semibold">Pays où nous sommes présents :</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <span className="badge-primary">🇸🇳 Sénégal</span>
+              <span className="badge-accent">🇨🇮 Côte d'Ivoire</span>
+              <span className="badge-coral">🇧🇯 Bénin</span>
+              <span className="badge-indigo">🇧🇫 Burkina Faso</span>
+              <span className="badge-primary">🇲🇱 Mali</span>
+              <span className="badge-accent">🇳🇪 Niger</span>
+              <span className="badge-coral">🇹🇬 Togo</span>
+              <span className="badge-indigo">🇬🇭 Ghana</span>
+              <span className="badge-primary">🇳🇬 Nigeria</span>
+              <span className="badge-accent">🇨🇲 Cameroun</span>
+              <span className="badge-coral">🇰🇪 Kenya</span>
+              <span className="badge-indigo">🇷🇼 Rwanda</span>
             </div>
           </div>
         </div>

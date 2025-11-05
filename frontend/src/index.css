@@ -113,6 +113,20 @@ body {
     repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(251, 191, 36, 0.03) 35px, rgba(251, 191, 36, 0.03) 70px);
 }
 
+/* Africa Map Pattern - Subtle background */
+.africa-map-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 50 10 C 55 10, 60 12, 63 16 C 66 20, 68 25, 68 30 C 68 35, 67 40, 65 45 C 63 50, 60 54, 56 57 C 52 60, 47 62, 42 62 C 37 62, 32 60, 28 57 C 24 54, 21 50, 19 45 C 17 40, 16 35, 16 30 C 16 25, 18 20, 21 16 C 24 12, 28 10, 33 10 Z M 68 35 C 70 36, 72 38, 73 41 C 74 44, 73 47, 71 49 M 50 85 C 52 88, 53 92, 53 96 C 53 100, 52 104, 50 107 M 30 87 C 28 90, 27 94, 27 98 C 27 102, 28 106, 30 109' fill='none' stroke='rgba(5, 150, 105, 0.08)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 200px 240px;
+  background-repeat: repeat;
+}
+
+/* Africa Map Pattern with Golden accent */
+.africa-map-pattern-gold {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 50 10 C 55 10, 60 12, 63 16 C 66 20, 68 25, 68 30 C 68 35, 67 40, 65 45 C 63 50, 60 54, 56 57 C 52 60, 47 62, 42 62 C 37 62, 32 60, 28 57 C 24 54, 21 50, 19 45 C 17 40, 16 35, 16 30 C 16 25, 18 20, 21 16 C 24 12, 28 10, 33 10 Z M 68 35 C 70 36, 72 38, 73 41 C 74 44, 73 47, 71 49 M 50 85 C 52 88, 53 92, 53 96 C 53 100, 52 104, 50 107 M 30 87 C 28 90, 27 94, 27 98 C 27 102, 28 106, 30 109' fill='none' stroke='rgba(251, 191, 36, 0.08)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 200px 240px;
+  background-repeat: repeat;
+}
+
 /* Gradient Backgrounds */
 .gradient-primary {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);

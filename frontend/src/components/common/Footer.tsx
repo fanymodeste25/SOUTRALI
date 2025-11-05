@@ -1,11 +1,20 @@
 import { Link } from 'react-router-dom';
 import { FiTwitter, FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi';
+import { AfricaMapOutline } from './AfricaMap';
 
 export const Footer = () => {
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
       {/* Decorative Background Pattern */}
       <div className="absolute inset-0 african-pattern opacity-10"></div>
+
+      {/* Africa Maps Decoration */}
+      <div className="absolute top-10 right-10 w-64 h-64 opacity-5">
+        <AfricaMapOutline className="w-full h-full" strokeColor="white" animated />
+      </div>
+      <div className="absolute bottom-10 left-10 w-48 h-48 opacity-5">
+        <AfricaMapOutline className="w-full h-full" strokeColor="white" />
+      </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
