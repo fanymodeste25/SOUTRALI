@@ -41,24 +41,6 @@ if not exist "backend\manage.py" (
     exit /b 1
 )
 
-REM Update code to latest version
-echo [INFO] Updating to latest version...
-git fetch origin >nul 2>&1
-if errorlevel 1 (
-    echo [WARNING] Unable to fetch updates (may not be a git repository).
-    echo Continuing with current version...
-) else (
-    for /f "tokens=*" %%i in ('git rev-parse --abbrev-ref HEAD') do set CURRENT_BRANCH=%%i
-    git pull origin %CURRENT_BRANCH% >nul 2>&1
-    if errorlevel 1 (
-        echo [WARNING] Unable to pull latest changes.
-        echo Continuing with current version...
-    ) else (
-        echo [OK] Code updated to latest version.
-    )
-)
-echo.
-
 echo This script will launch:
 echo   1. Backend Django (port 8000)
 echo   2. Frontend React (port 5173)
@@ -189,24 +171,6 @@ if not exist "backend\manage.py" (
     pause
     exit /b 1
 )
-
-REM Mettre à jour vers la dernière version
-echo [INFO] Mise à jour vers la dernière version...
-git fetch origin >nul 2>&1
-if errorlevel 1 (
-    echo [ATTENTION] Impossible de récupérer les mises à jour (peut ne pas être un dépôt git).
-    echo Continuation avec la version actuelle...
-) else (
-    for /f "tokens=*" %%i in ('git rev-parse --abbrev-ref HEAD') do set CURRENT_BRANCH=%%i
-    git pull origin %CURRENT_BRANCH% >nul 2>&1
-    if errorlevel 1 (
-        echo [ATTENTION] Impossible de récupérer les dernières modifications.
-        echo Continuation avec la version actuelle...
-    ) else (
-        echo [OK] Code mis à jour vers la dernière version.
-    )
-)
-echo.
 
 echo Ce script va lancer :
 echo   1. Backend Django (port 8000)
