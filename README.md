@@ -74,41 +74,47 @@
 - Docker & Docker Compose (optional but recommended)
 - Node.js 18+ (for frontend development)
 
-## 🚀 Quick Start
+## 🚀 Quick Start / Démarrage Rapide
 
-### Windows - Lancement Rapide (⚡ Recommandé pour Windows)
+### Windows - Bilingual Scripts / Scripts Bilingues (⚡ Recommandé / Recommended)
 
-Pour les utilisateurs Windows, nous avons créé des scripts batch pour automatiser le setup complet !
+🇬🇧 **English** / 🇫🇷 **Français**
 
-1. **Cloner le repository**
+All our Windows scripts support **both English and French**! Simply choose your language when you run them.
+
+Tous nos scripts Windows supportent **l'anglais ET le français** ! Choisissez simplement votre langue au lancement.
+
+1. **Clone the repository / Cloner le repository**
    ```cmd
    git clone https://github.com/fanymodeste25/SOUTRALI.git
    cd SOUTRALI
    ```
 
-2. **Configurer PostgreSQL** (première fois uniquement)
+2. **Setup PostgreSQL / Configurer PostgreSQL** (first time only / première fois uniquement)
    ```cmd
-   Double-clic sur: setup_database.bat
+   Double-click / Double-clic sur: setup_database.bat
+   → Choose language: [1] English or [2] Français
    ```
 
-3. **Lancer l'application complète** (Backend + Frontend)
+3. **Launch full application / Lancer l'application complète** (Backend + Frontend)
    ```cmd
-   Double-clic sur: start_full.bat
+   Double-click / Double-clic sur: start_full.bat
+   → Choose language: [1] English or [2] Français
    ```
 
-4. **Accéder à l'application**
+4. **Access the application / Accéder à l'application**
    - Frontend: http://localhost:5173
    - Backend API: http://localhost:8000
    - Admin: http://localhost:8000/admin
    - API Docs: http://localhost:8000/api/docs
 
-> 📖 **Documentation Windows complète** : [docs/WINDOWS_SETUP.md](docs/WINDOWS_SETUP.md)
+> 📖 **Full documentation / Documentation complète** : [docs/WINDOWS_SETUP.md](docs/WINDOWS_SETUP.md)
 
-**Scripts disponibles** :
-- `setup_database.bat` - Configuration PostgreSQL
-- `start.bat` - Lancer le backend uniquement
-- `start_full.bat` - Lancer backend + frontend + services
-- `stop_all.bat` - Arrêter tous les services
+**Available scripts / Scripts disponibles** :
+- `setup_database.bat` - PostgreSQL setup / Configuration PostgreSQL
+- `start.bat` - Backend only / Backend uniquement
+- `start_full.bat` - Full stack / Stack complet (Backend + Frontend + Services)
+- `stop_all.bat` - Stop all / Arrêter tout
 
 ---
 
