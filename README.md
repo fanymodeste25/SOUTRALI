@@ -124,9 +124,17 @@
 
 3. **Setup PostgreSQL database**
    ```bash
-   createdb soutrali_db
-   createuser soutrali_user
+   # Se connecter à PostgreSQL avec l'utilisateur postgres
+   psql -U postgres
+
+   # Dans psql, créer l'utilisateur et la base de données
+   CREATE USER soutrali_user WITH PASSWORD 'soutrali_pass';
+   CREATE DATABASE soutrali_db OWNER soutrali_user;
+   GRANT ALL PRIVILEGES ON DATABASE soutrali_db TO soutrali_user;
+   \q
    ```
+
+   > 📖 **Note**: Pour des instructions détaillées, consultez [docs/DATABASE_SETUP.md](docs/DATABASE_SETUP.md)
 
 4. **Configure environment**
    ```bash
