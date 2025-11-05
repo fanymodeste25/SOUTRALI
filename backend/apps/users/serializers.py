@@ -70,9 +70,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         validated_data.pop('password_confirm')
         password = validated_data.pop('password')
 
-        user = User.objects.create(**validated_data)
-        user.set_password(password)
-        user.save()
+        # Use create_user method from UserManager for proper user creation
+        user = User.objects.create_user(
+            password=password,
+            **validated_data
+        )
 
         # Create email verification token
         token = secrets.token_urlsafe(32)
