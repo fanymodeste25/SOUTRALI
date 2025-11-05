@@ -3,44 +3,51 @@ import { FiTwitter, FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi';
 
 export const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
+      {/* Decorative Background Pattern */}
+      <div className="absolute inset-0 african-pattern opacity-10"></div>
+
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">S</span>
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-accent-500 rounded-xl flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-2xl">S</span>
               </div>
-              <span className="text-2xl font-bold">Soutrali</span>
+              <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Soutrali</span>
             </div>
-            <p className="text-gray-400 text-sm">
-              Help for African communities. Enabling seamless fundraising through mobile money.
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Solidarité pour les communautés africaines. Facilitons la collecte de fonds via mobile money.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="font-bold text-lg mb-6 text-gradient">Liens Rapides</h3>
+            <ul className="space-y-3">
               <li>
-                <Link to="/campaigns" className="text-gray-400 hover:text-white">
-                  Browse Campaigns
+                <Link to="/campaigns" className="text-gray-400 hover:text-primary-400 transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
+                  Parcourir les Campagnes
                 </Link>
               </li>
               <li>
-                <Link to="/campaigns/create" className="text-gray-400 hover:text-white">
-                  Start a Campaign
+                <Link to="/campaigns/create" className="text-gray-400 hover:text-primary-400 transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
+                  Créer une Campagne
                 </Link>
               </li>
               <li>
-                <Link to="/how-it-works" className="text-gray-400 hover:text-white">
-                  How It Works
+                <Link to="/how-it-works" className="text-gray-400 hover:text-primary-400 transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
+                  Comment ça marche
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-400 hover:text-white">
-                  About Us
+                <Link to="/about" className="text-gray-400 hover:text-primary-400 transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
+                  À propos
                 </Link>
               </li>
             </ul>
@@ -48,26 +55,30 @@ export const Footer = () => {
 
           {/* Support */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Support</h3>
-            <ul className="space-y-2">
+            <h3 className="font-bold text-lg mb-6 text-gradient">Support</h3>
+            <ul className="space-y-3">
               <li>
-                <Link to="/help" className="text-gray-400 hover:text-white">
-                  Help Center
+                <Link to="/help" className="text-gray-400 hover:text-accent-400 transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
+                  Centre d'aide
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-white">
-                  Contact Us
+                <Link to="/contact" className="text-gray-400 hover:text-accent-400 transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
+                  Contactez-nous
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="text-gray-400 hover:text-white">
-                  Privacy Policy
+                <Link to="/privacy" className="text-gray-400 hover:text-accent-400 transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
+                  Politique de confidentialité
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-gray-400 hover:text-white">
-                  Terms of Service
+                <Link to="/terms" className="text-gray-400 hover:text-accent-400 transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
+                  Conditions d'utilisation
                 </Link>
               </li>
             </ul>
@@ -75,54 +86,57 @@ export const Footer = () => {
 
           {/* Social */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
+            <h3 className="font-bold text-lg mb-6 text-gradient">Suivez-nous</h3>
+            <div className="flex space-x-3 mb-8">
               <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 rounded-lg flex items-center justify-center transition-all transform hover:scale-110 hover:-translate-y-1 shadow-md"
               >
-                <FiTwitter className="w-6 h-6" />
+                <FiTwitter className="w-5 h-5" />
               </a>
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="w-10 h-10 bg-gradient-to-br from-accent-600 to-accent-500 hover:from-accent-500 hover:to-accent-400 rounded-lg flex items-center justify-center transition-all transform hover:scale-110 hover:-translate-y-1 shadow-md"
               >
-                <FiFacebook className="w-6 h-6" />
+                <FiFacebook className="w-5 h-5" />
               </a>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="w-10 h-10 bg-gradient-to-br from-coral-600 to-coral-500 hover:from-coral-500 hover:to-coral-400 rounded-lg flex items-center justify-center transition-all transform hover:scale-110 hover:-translate-y-1 shadow-md"
               >
-                <FiInstagram className="w-6 h-6" />
+                <FiInstagram className="w-5 h-5" />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white"
+                className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 rounded-lg flex items-center justify-center transition-all transform hover:scale-110 hover:-translate-y-1 shadow-md"
               >
-                <FiLinkedin className="w-6 h-6" />
+                <FiLinkedin className="w-5 h-5" />
               </a>
             </div>
-            <div className="mt-6">
-              <p className="text-gray-400 text-sm mb-2">Payment Methods:</p>
-              <div className="flex space-x-3">
-                <div className="text-xs bg-gray-800 px-3 py-1 rounded">Wave</div>
-                <div className="text-xs bg-gray-800 px-3 py-1 rounded">Orange</div>
-                <div className="text-xs bg-gray-800 px-3 py-1 rounded">MTN</div>
+            <div>
+              <p className="text-gray-400 text-sm mb-3 font-semibold">Méthodes de Paiement:</p>
+              <div className="flex flex-wrap gap-2">
+                <div className="badge-primary">Wave</div>
+                <div className="badge-accent">Orange Money</div>
+                <div className="badge-coral">MTN Mobile Money</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-          <p>&copy; {new Date().getFullYear()} Soutrali. All rights reserved.</p>
+        <div className="border-t-2 border-gradient-to-r from-primary-500 via-accent-500 to-coral-500 mt-12 pt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            &copy; {new Date().getFullYear()} <span className="font-bold text-white">Soutrali</span>. Tous droits réservés. Fait avec{' '}
+            <span className="text-coral-500">❤</span> pour l'Afrique.
+          </p>
         </div>
       </div>
     </footer>
