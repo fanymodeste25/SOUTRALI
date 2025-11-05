@@ -205,7 +205,10 @@ body {
   }
 
   .section-feature {
-    @apply relative py-16 md:py-24 african-pattern;
+    @apply relative py-16 md:py-24;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(16, 185, 129, 0.03) 35px, rgba(16, 185, 129, 0.03) 70px),
+      repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(251, 191, 36, 0.03) 35px, rgba(251, 191, 36, 0.03) 70px);
   }
 
   /* Text Styles */
