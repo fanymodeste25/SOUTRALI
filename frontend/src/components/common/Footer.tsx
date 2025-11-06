@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { FiTwitter, FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi';
 import { AfricaMapOutline } from './AfricaMap';
 
 export const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
       {/* Decorative Background Pattern */}
@@ -27,36 +29,36 @@ export const Footer = () => {
               <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Soutrali</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Solidarité pour les communautés africaines. Facilitons la collecte de fonds via mobile money.
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-6 text-gradient">Liens Rapides</h3>
+            <h3 className="font-bold text-lg mb-6 text-gradient">{t('footer.quickLinks')}</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/campaigns" className="text-gray-400 hover:text-primary-400 transition-colors flex items-center group">
                   <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
-                  Parcourir les Campagnes
+                  {t('footer.browseCampaigns')}
                 </Link>
               </li>
               <li>
                 <Link to="/campaigns/create" className="text-gray-400 hover:text-primary-400 transition-colors flex items-center group">
                   <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
-                  Créer une Campagne
+                  {t('footer.createCampaign')}
                 </Link>
               </li>
               <li>
                 <Link to="/how-it-works" className="text-gray-400 hover:text-primary-400 transition-colors flex items-center group">
                   <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
-                  Comment ça marche
+                  {t('footer.howItWorks')}
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-gray-400 hover:text-primary-400 transition-colors flex items-center group">
                   <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
-                  À propos
+                  {t('footer.about')}
                 </Link>
               </li>
             </ul>
@@ -64,30 +66,30 @@ export const Footer = () => {
 
           {/* Support */}
           <div>
-            <h3 className="font-bold text-lg mb-6 text-gradient">Support</h3>
+            <h3 className="font-bold text-lg mb-6 text-gradient">{t('footer.support')}</h3>
             <ul className="space-y-3">
               <li>
                 <Link to="/help" className="text-gray-400 hover:text-accent-400 transition-colors flex items-center group">
                   <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
-                  Centre d'aide
+                  {t('footer.helpCenter')}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-gray-400 hover:text-accent-400 transition-colors flex items-center group">
                   <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
-                  Contactez-nous
+                  {t('footer.contact')}
                 </Link>
               </li>
               <li>
                 <Link to="/privacy" className="text-gray-400 hover:text-accent-400 transition-colors flex items-center group">
                   <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
-                  Politique de confidentialité
+                  {t('footer.privacy')}
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-gray-400 hover:text-accent-400 transition-colors flex items-center group">
                   <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 group-hover:w-3 transition-all"></span>
-                  Conditions d'utilisation
+                  {t('footer.terms')}
                 </Link>
               </li>
             </ul>
@@ -95,7 +97,7 @@ export const Footer = () => {
 
           {/* Social */}
           <div>
-            <h3 className="font-bold text-lg mb-6 text-gradient">Suivez-nous</h3>
+            <h3 className="font-bold text-lg mb-6 text-gradient">{t('footer.followUs')}</h3>
             <div className="flex space-x-3 mb-8">
               <a
                 href="https://twitter.com"
@@ -131,7 +133,7 @@ export const Footer = () => {
               </a>
             </div>
             <div>
-              <p className="text-gray-400 text-sm mb-3 font-semibold">Méthodes de Paiement:</p>
+              <p className="text-gray-400 text-sm mb-3 font-semibold">{t('footer.paymentMethods')}</p>
               <div className="flex flex-wrap gap-2">
                 <div className="badge-primary">Wave</div>
                 <div className="badge-accent">Orange Money</div>
@@ -143,8 +145,8 @@ export const Footer = () => {
 
         <div className="border-t-2 border-gradient-to-r from-primary-500 via-accent-500 to-coral-500 mt-12 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} <span className="font-bold text-white">Soutrali</span>. Tous droits réservés. Fait avec{' '}
-            <span className="text-coral-500">❤</span> pour l'Afrique.
+            &copy; {new Date().getFullYear()} <span className="font-bold text-white">Soutrali</span>. {t('footer.copyright')}{' '}
+            <span className="text-coral-500">❤</span> {t('footer.forAfrica')}
           </p>
         </div>
       </div>

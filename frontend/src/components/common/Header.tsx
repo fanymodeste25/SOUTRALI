@@ -1,14 +1,29 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { FiMenu, FiX, FiUser, FiLogOut, FiGrid } from 'react-icons/fi';
-import { useState } from 'react';
+import { FiMenu, FiX, FiUser, FiLogOut, FiGrid, FiGlobe } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '../../stores/authStore';
+import { useLanguageStore } from '../../stores/languageStore';
+import type { Language } from '../../stores/languageStore';
 import { UserRole } from '../../types';
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuthStore();
+  const { language, setLanguage } = useLanguageStore();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language, i18n]);
+
+  const handleLanguageChange = (newLanguage: Language) => {
+    setLanguage(newLanguage);
+    setIsLanguageMenuOpen(false);
+  };
 
   const handleLogout = () => {
     logout();
@@ -30,15 +45,15 @@ export const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/campaigns" className="text-gray-700 hover:text-primary-600 font-semibold transition-colors relative group">
-              Campagnes
+              {t('header.campaigns')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-500 group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link to="/how-it-works" className="text-gray-700 hover:text-primary-600 font-semibold transition-colors relative group">
-              Comment ça marche
+              {t('header.howItWorks')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-500 group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link to="/about" className="text-gray-700 hover:text-primary-600 font-semibold transition-colors relative group">
-              À propos
+              {t('header.about')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-500 group-hover:w-full transition-all duration-300"></span>
             </Link>
 
@@ -52,7 +67,7 @@ export const Header = () => {
                     <FiUser className="w-4 h-4 text-white" />
                   </div>
                   <span>
-                    {user?.first_name || 'Compte'}
+                    {user?.first_name || t('header.account')}
                   </span>
                 </button>
 
@@ -66,7 +81,7 @@ export const Header = () => {
                       <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3">
                         <FiUser className="w-4 h-4 text-primary-600" />
                       </div>
-                      Profil
+                      {t('header.profile')}
                     </Link>
                     {(user?.role === UserRole.ORGANIZER || user?.role === UserRole.ADMIN) && (
                       <Link
@@ -77,7 +92,7 @@ export const Header = () => {
                         <div className="w-8 h-8 bg-accent-100 rounded-full flex items-center justify-center mr-3">
                           <FiGrid className="w-4 h-4 text-accent-600" />
                         </div>
-                        Tableau de bord
+                        {t('header.dashboard')}
                       </Link>
                     )}
                     <button
@@ -87,7 +102,7 @@ export const Header = () => {
                       <div className="w-8 h-8 bg-coral-100 rounded-full flex items-center justify-center mr-3">
                         <FiLogOut className="w-4 h-4 text-coral-600" />
                       </div>
-                      Déconnexion
+                      {t('header.logout')}
                     </button>
                   </div>
                 )}
@@ -98,19 +113,51 @@ export const Header = () => {
                   to="/login"
                   className="text-gray-700 hover:text-primary-600 font-semibold transition-colors"
                 >
-                  Connexion
+                  {t('header.login')}
                 </Link>
                 <Link to="/register" className="btn-outline">
-                  S'inscrire
+                  {t('header.register')}
                 </Link>
               </div>
             )}
+
+            {/* Language Switcher */}
+            <div className="relative">
+              <button
+                onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                className="flex items-center space-x-2 text-gray-700 hover:text-primary-600 transition-colors font-semibold"
+              >
+                <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center">
+                  <FiGlobe className="w-4 h-4 text-white" />
+                </div>
+                <span className="uppercase">{language}</span>
+              </button>
+
+              {isLanguageMenuOpen && (
+                <div className="absolute right-0 mt-3 w-40 bg-white rounded-2xl shadow-2xl py-2 border-2 border-primary-100 animate-slide-up">
+                  <button
+                    onClick={() => handleLanguageChange('fr')}
+                    className={`flex items-center w-full px-4 py-3 text-gray-700 hover:bg-primary-50 transition-colors font-medium ${language === 'fr' ? 'bg-primary-50' : ''}`}
+                  >
+                    <span className="mr-3 text-xl">🇫🇷</span>
+                    Français
+                  </button>
+                  <button
+                    onClick={() => handleLanguageChange('en')}
+                    className={`flex items-center w-full px-4 py-3 text-gray-700 hover:bg-primary-50 transition-colors font-medium ${language === 'en' ? 'bg-primary-50' : ''}`}
+                  >
+                    <span className="mr-3 text-xl">🇬🇧</span>
+                    English
+                  </button>
+                </div>
+              )}
+            </div>
 
             <Link
               to="/campaigns/create"
               className="btn-primary"
             >
-              Créer une Campagne
+              {t('header.createCampaign')}
             </Link>
           </div>
 
@@ -136,21 +183,21 @@ export const Header = () => {
                 className="text-gray-700 hover:text-primary-600 font-semibold transition-colors px-4 py-2 rounded-lg hover:bg-white"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Campagnes
+                {t('header.campaigns')}
               </Link>
               <Link
                 to="/how-it-works"
                 className="text-gray-700 hover:text-primary-600 font-semibold transition-colors px-4 py-2 rounded-lg hover:bg-white"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Comment ça marche
+                {t('header.howItWorks')}
               </Link>
               <Link
                 to="/about"
                 className="text-gray-700 hover:text-primary-600 font-semibold transition-colors px-4 py-2 rounded-lg hover:bg-white"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                À propos
+                {t('header.about')}
               </Link>
 
               {isAuthenticated ? (
@@ -160,7 +207,7 @@ export const Header = () => {
                     className="text-gray-700 hover:text-primary-600 font-semibold transition-colors px-4 py-2 rounded-lg hover:bg-white"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Profil
+                    {t('header.profile')}
                   </Link>
                   {(user?.role === UserRole.ORGANIZER || user?.role === UserRole.ADMIN) && (
                     <Link
@@ -168,14 +215,14 @@ export const Header = () => {
                       className="text-gray-700 hover:text-primary-600 font-semibold transition-colors px-4 py-2 rounded-lg hover:bg-white"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      Tableau de bord
+                      {t('header.dashboard')}
                     </Link>
                   )}
                   <button
                     onClick={handleLogout}
                     className="text-left text-coral-600 font-semibold px-4 py-2 rounded-lg hover:bg-white transition-colors"
                   >
-                    Déconnexion
+                    {t('header.logout')}
                   </button>
                 </>
               ) : (
@@ -185,24 +232,51 @@ export const Header = () => {
                     className="text-gray-700 hover:text-primary-600 font-semibold transition-colors px-4 py-2 rounded-lg hover:bg-white"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Connexion
+                    {t('header.login')}
                   </Link>
                   <Link
                     to="/register"
                     className="btn-outline inline-block text-center"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    S'inscrire
+                    {t('header.register')}
                   </Link>
                 </>
               )}
+
+              {/* Language Switcher Mobile */}
+              <div className="border-t border-primary-200 pt-4">
+                <p className="text-gray-600 text-sm font-semibold px-4 mb-2">Language:</p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => {
+                      handleLanguageChange('fr');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${language === 'fr' ? 'bg-primary-100 text-primary-700' : 'bg-white text-gray-700 hover:bg-primary-50'}`}
+                  >
+                    <span className="text-xl">🇫🇷</span>
+                    Français
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleLanguageChange('en');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${language === 'en' ? 'bg-primary-100 text-primary-700' : 'bg-white text-gray-700 hover:bg-primary-50'}`}
+                  >
+                    <span className="text-xl">🇬🇧</span>
+                    English
+                  </button>
+                </div>
+              </div>
 
               <Link
                 to="/campaigns/create"
                 className="btn-primary inline-block text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Créer une Campagne
+                {t('header.createCampaign')}
               </Link>
             </div>
           </div>

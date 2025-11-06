@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Layout } from '../components/common/Layout';
 import { CampaignCard } from '../components/campaigns/CampaignCard';
 import { Loading } from '../components/common/Loading';
@@ -10,6 +11,7 @@ import { FiHeart, FiShield, FiZap } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export const HomePage = () => {
+  const { t } = useTranslation();
   const [featuredCampaigns, setFeaturedCampaigns] = useState<Campaign[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -51,18 +53,17 @@ export const HomePage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center animate-slide-up">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-              Solidarité pour l'Afrique
+              {t('home.heroTitle')}
             </h1>
             <p className="text-xl md:text-2xl mb-10 text-white/90 leading-relaxed">
-              Soutrali connecte les donateurs avec des causes significatives à travers l'Afrique.
-              Créez une campagne ou soutenez-en une dès aujourd'hui.
+              {t('home.heroSubtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/campaigns" className="btn-secondary">
-                Parcourir les Campagnes
+                {t('home.browseCampaigns')}
               </Link>
               <Link to="/campaigns/create" className="btn-outline border-white text-white hover:bg-white hover:text-primary-600">
-                Créer une Campagne
+                {t('home.createCampaign')}
               </Link>
             </div>
           </div>
@@ -81,10 +82,10 @@ export const HomePage = () => {
       <section className="section-feature">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            <span className="text-gradient-vibrant">Pourquoi Soutrali ?</span>
+            <span className="text-gradient-vibrant">{t('home.whyTitle')}</span>
           </h2>
           <p className="text-center text-gray-600 mb-12 text-lg max-w-2xl mx-auto">
-            Une plateforme moderne et sécurisée pour transformer la solidarité en Afrique
+            {t('home.whySubtitle')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="card-gradient text-center p-8 group">
@@ -92,11 +93,10 @@ export const HomePage = () => {
                 <FiZap className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                Rapide & Facile
+                {t('home.fastEasyTitle')}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Créez une campagne en quelques minutes et commencez à recevoir des dons via
-                mobile money instantanément.
+                {t('home.fastEasyDesc')}
               </p>
             </div>
 
@@ -105,11 +105,10 @@ export const HomePage = () => {
                 <FiShield className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                Sécurisé & Fiable
+                {t('home.secureTitle')}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Vos dons sont protégés avec une sécurité bancaire et un suivi transparent
-                de chaque transaction.
+                {t('home.secureDesc')}
               </p>
             </div>
 
@@ -118,11 +117,10 @@ export const HomePage = () => {
                 <FiHeart className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                Centré sur la Communauté
+                {t('home.communityTitle')}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Conçu pour les communautés africaines avec Wave, Orange Money et
-                MTN Mobile Money.
+                {t('home.communityDesc')}
               </p>
             </div>
           </div>
@@ -134,10 +132,10 @@ export const HomePage = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-gradient-vibrant">Notre Impact en Afrique</span>
+              <span className="text-gradient-vibrant">{t('home.impactTitle')}</span>
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Ensemble, nous transformons des vies à travers tout le continent africain
+              {t('home.impactSubtitle')}
             </p>
           </div>
 
@@ -167,8 +165,8 @@ export const HomePage = () => {
                     <span className="text-3xl font-bold text-white">12</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Pays Actifs</h3>
-                    <p className="text-gray-600">Présents dans 12 pays africains et en expansion continue</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('home.activeCountries')}</h3>
+                    <p className="text-gray-600">{t('home.activeCountriesDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -179,8 +177,8 @@ export const HomePage = () => {
                     <span className="text-3xl font-bold text-white">50K+</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Communautés Aidées</h3>
-                    <p className="text-gray-600">Plus de 50 000 personnes ont bénéficié de nos campagnes</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('home.communitiesHelped')}</h3>
+                    <p className="text-gray-600">{t('home.communitiesHelpedDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -191,8 +189,8 @@ export const HomePage = () => {
                     <span className="text-2xl font-bold text-white">100%</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Transparent</h3>
-                    <p className="text-gray-600">Traçabilité complète de chaque don via blockchain</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('home.transparent')}</h3>
+                    <p className="text-gray-600">{t('home.transparentDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -201,7 +199,7 @@ export const HomePage = () => {
 
           {/* Countries badges */}
           <div className="mt-16 text-center">
-            <p className="text-gray-600 mb-6 font-semibold">Pays où nous sommes présents :</p>
+            <p className="text-gray-600 mb-6 font-semibold">{t('home.countriesPresent')}</p>
             <div className="flex flex-wrap justify-center gap-3">
               <span className="badge-primary">🇸🇳 Sénégal</span>
               <span className="badge-accent">🇨🇮 Côte d'Ivoire</span>
@@ -226,15 +224,15 @@ export const HomePage = () => {
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
-                Campagnes en Vedette
+                {t('home.featuredCampaigns')}
               </h2>
-              <p className="text-gray-600 text-lg">Soutenez les causes qui vous tiennent à cœur</p>
+              <p className="text-gray-600 text-lg">{t('home.supportCauses')}</p>
             </div>
             <Link
               to="/campaigns"
               className="mt-4 md:mt-0 inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold text-lg group"
             >
-              Voir Tout
+              {t('home.viewAll')}
               <span className="transform group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </div>
@@ -246,7 +244,7 @@ export const HomePage = () => {
               <div className="w-24 h-24 bg-gradient-to-br from-primary-100 to-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FiHeart className="w-12 h-12 text-primary-600" />
               </div>
-              <p className="text-gray-600 text-lg">Aucune campagne en vedette pour le moment</p>
+              <p className="text-gray-600 text-lg">{t('home.noCampaigns')}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -268,13 +266,13 @@ export const HomePage = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Prêt à Faire la Différence ?
+              {t('home.ctaTitle')}
             </h2>
             <p className="text-xl md:text-2xl mb-10 text-white/90 leading-relaxed">
-              Lancez votre campagne de financement aujourd'hui et obtenez le soutien de votre communauté.
+              {t('home.ctaSubtitle')}
             </p>
             <Link to="/register" className="btn-secondary inline-block">
-              Commencer Maintenant
+              {t('home.startNow')}
             </Link>
           </div>
         </div>
