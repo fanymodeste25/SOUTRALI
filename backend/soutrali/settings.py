@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'apps.payments',
     'apps.webhooks',
     'apps.core',
+    'apps.blog',
 ]
 
 MIDDLEWARE = [

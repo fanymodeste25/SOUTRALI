@@ -33,6 +33,10 @@ export const Header = () => {
               Campagnes
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-500 group-hover:w-full transition-all duration-300"></span>
             </Link>
+            <Link to="/blog" className="text-gray-700 hover:text-primary-600 font-semibold transition-colors relative group">
+              Blog
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-500 group-hover:w-full transition-all duration-300"></span>
+            </Link>
             <Link to="/how-it-works" className="text-gray-700 hover:text-primary-600 font-semibold transition-colors relative group">
               Comment ça marche
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-500 group-hover:w-full transition-all duration-300"></span>
@@ -137,6 +141,13 @@ export const Header = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Campagnes
+              </Link>
+              <Link
+                to="/blog"
+                className="text-gray-700 hover:text-primary-600 font-semibold transition-colors px-4 py-2 rounded-lg hover:bg-white"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Blog
               </Link>
               <Link
                 to="/how-it-works"

@@ -13,6 +13,8 @@ import { CampaignDetailPage } from './pages/campaigns/CampaignDetailPage';
 import { CreateCampaignPage } from './pages/campaigns/CreateCampaignPage';
 import { DonatePage } from './pages/payment/DonatePage';
 import { OrganizerDashboard } from './pages/dashboard/OrganizerDashboard';
+import BlogPage from './pages/blog/BlogPage';
+import BlogPostPage from './pages/blog/BlogPostPage';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 import { UserRole } from './types';
 
@@ -70,6 +72,8 @@ function App() {
           <Route path="/campaigns" element={<CampaignsPage />} />
           <Route path="/campaigns/:id" element={<CampaignDetailPage />} />
           <Route path="/donate/:id" element={<DonatePage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
 
           {/* Protected Routes */}
           <Route

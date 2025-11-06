@@ -20,6 +20,7 @@ urlpatterns = [
     path('api/campaigns/', include('apps.campaigns.urls')),
     path('api/payments/', include('apps.payments.urls')),
     path('api/webhooks/', include('apps.webhooks.urls')),
+    path('api/blog/', include('apps.blog.urls')),
     path('api/', include('apps.core.urls')),
 ]
 

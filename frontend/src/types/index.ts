@@ -198,3 +198,43 @@ export interface DashboardStats {
   total_donors: number;
   recent_donations: Payment[];
 }
+
+// Blog Types
+export type BlogPostStatus = 'draft' | 'published' | 'archived';
+
+export const BlogPostStatus = {
+  DRAFT: 'draft' as BlogPostStatus,
+  PUBLISHED: 'published' as BlogPostStatus,
+  ARCHIVED: 'archived' as BlogPostStatus,
+};
+
+export interface BlogCategory {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  post_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  featured_image?: string;
+  author_name: string;
+  author_email?: string;
+  category?: number;
+  category_name?: string;
+  category_slug?: string;
+  status: BlogPostStatus;
+  is_featured: boolean;
+  views_count: number;
+  published_at?: string;
+  created_at: string;
+  updated_at: string;
+  read_time: number;
+}
