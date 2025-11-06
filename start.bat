@@ -1,5 +1,10 @@
 @echo off
 chcp 65001 >nul
+
+REM Change to the directory where this batch file is located
+REM Changer vers le répertoire où se trouve ce fichier batch
+cd /d "%~dp0"
+
 REM ============================================
 REM Soutrali Launch Script - Bilingual
 REM Script de lancement Soutrali - Bilingue
