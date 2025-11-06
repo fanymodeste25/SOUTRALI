@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { Campaign } from '../../types';
 import { FiCalendar, FiUsers } from 'react-icons/fi';
+import { getCategoryLabel } from '../../utils/translations';
 
 interface CampaignCardProps {
   campaign: Campaign;
@@ -69,7 +70,7 @@ export const CampaignCard = ({ campaign }: CampaignCardProps) => {
           </div>
         )}
         <div className={`absolute top-3 right-3 ${getCategoryColor(campaign.category)} shadow-md`}>
-          {campaign.category}
+          {getCategoryLabel(campaign.category)}
         </div>
       </div>
 

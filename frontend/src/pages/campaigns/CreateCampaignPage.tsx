@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/common/Layout';
 import { campaignService } from '../../services/campaign.service';
 import { CampaignCategory } from '../../types';
+import { getCategoryLabel } from '../../utils/translations';
 import toast from 'react-hot-toast';
 
 export const CreateCampaignPage = () => {
@@ -38,7 +39,7 @@ export const CreateCampaignPage = () => {
         status: 'DRAFT' as any,
       });
 
-      toast.success('Campaign created successfully!');
+      toast.success('Campagne créée avec succès !');
       navigate(`/campaigns/${campaign.id}`);
     } catch (error: any) {
       const errorData = error.response?.data;
@@ -52,7 +53,7 @@ export const CreateCampaignPage = () => {
           }
         });
       } else {
-        toast.error('Failed to create campaign');
+        toast.error('Échec de la création de la campagne');
       }
     } finally {
       setIsSubmitting(false);
@@ -63,17 +64,17 @@ export const CreateCampaignPage = () => {
     <Layout>
       <div className="container mx-auto px-4 py-8 max-w-3xl">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Create a Campaign
+          Créer une Campagne
         </h1>
         <p className="text-gray-600 mb-8">
-          Share your story and start raising funds for your cause
+          Partagez votre histoire et commencez à collecter des fonds pour votre cause
         </p>
 
         <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-md p-6 space-y-6">
           {/* Title */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Campaign Title *
+              Titre de la Campagne *
             </label>
             <input
               type="text"
@@ -82,18 +83,18 @@ export const CreateCampaignPage = () => {
               value={formData.title}
               onChange={handleChange}
               className="input-field"
-              placeholder="Give your campaign a clear, descriptive title"
+              placeholder="Donnez à votre campagne un titre clair et descriptif"
               maxLength={200}
             />
             <p className="text-sm text-gray-500 mt-1">
-              {formData.title.length}/200 characters
+              {formData.title.length}/200 caractères
             </p>
           </div>
 
           {/* Description */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Campaign Description *
+              Description de la Campagne *
             </label>
             <textarea
               name="description"
@@ -101,14 +102,14 @@ export const CreateCampaignPage = () => {
               value={formData.description}
               onChange={handleChange}
               className="input-field min-h-[200px]"
-              placeholder="Tell your story. Why are you raising funds? How will the money be used?"
+              placeholder="Racontez votre histoire. Pourquoi collectez-vous des fonds ? Comment l'argent sera-t-il utilisé ?"
             />
           </div>
 
           {/* Category */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Category *
+              Catégorie *
             </label>
             <select
               name="category"
@@ -119,7 +120,7 @@ export const CreateCampaignPage = () => {
             >
               {Object.values(CampaignCategory).map((cat) => (
                 <option key={cat} value={cat}>
-                  {cat}
+                  {getCategoryLabel(cat)}
                 </option>
               ))}
             </select>
@@ -129,7 +130,7 @@ export const CreateCampaignPage = () => {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Goal Amount *
+                Montant Objectif *
               </label>
               <input
                 type="number"
@@ -145,7 +146,7 @@ export const CreateCampaignPage = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Currency *
+                Devise *
               </label>
               <select
                 name="currency"
@@ -154,9 +155,9 @@ export const CreateCampaignPage = () => {
                 className="input-field"
                 required
               >
-                <option value="XOF">XOF (CFA Franc)</option>
+                <option value="XOF">XOF (Franc CFA)</option>
                 <option value="EUR">EUR (Euro)</option>
-                <option value="USD">USD (US Dollar)</option>
+                <option value="USD">USD (Dollar US)</option>
               </select>
             </div>
           </div>
@@ -164,13 +165,13 @@ export const CreateCampaignPage = () => {
           {/* Beneficiary Information */}
           <div className="border-t pt-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              Beneficiary Information
+              Informations sur le Bénéficiaire
             </h3>
 
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Beneficiary Name *
+                  Nom du Bénéficiaire *
                 </label>
                 <input
                   type="text"
@@ -179,13 +180,13 @@ export const CreateCampaignPage = () => {
                   value={formData.beneficiary_name}
                   onChange={handleChange}
                   className="input-field"
-                  placeholder="Who will benefit from this campaign?"
+                  placeholder="Qui bénéficiera de cette campagne ?"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Beneficiary Phone (Optional)
+                  Téléphone du Bénéficiaire (Optionnel)
                 </label>
                 <input
                   type="tel"
@@ -202,7 +203,7 @@ export const CreateCampaignPage = () => {
           {/* Campaign Duration */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              End Date (Optional)
+              Date de Fin (Optionnel)
             </label>
             <input
               type="date"
@@ -213,7 +214,7 @@ export const CreateCampaignPage = () => {
               min={new Date().toISOString().split('T')[0]}
             />
             <p className="text-sm text-gray-500 mt-1">
-              Leave blank if you don't want to set an end date
+              Laissez vide si vous ne souhaitez pas définir de date de fin
             </p>
           </div>
 
@@ -224,14 +225,14 @@ export const CreateCampaignPage = () => {
               onClick={() => navigate('/dashboard')}
               className="btn-secondary flex-1"
             >
-              Cancel
+              Annuler
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
               className="btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'Creating...' : 'Create Campaign'}
+              {isSubmitting ? 'Création...' : 'Créer la Campagne'}
             </button>
           </div>
         </form>

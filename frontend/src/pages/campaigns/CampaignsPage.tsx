@@ -6,6 +6,7 @@ import { campaignService } from '../../services/campaign.service';
 import type { CampaignFilters } from '../../services/campaign.service';
 import type { Campaign } from '../../types';
 import { CampaignStatus, CampaignCategory } from '../../types';
+import { getCategoryLabel } from '../../utils/translations';
 import toast from 'react-hot-toast';
 
 export const CampaignsPage = () => {
@@ -25,7 +26,7 @@ export const CampaignsPage = () => {
       const response = await campaignService.list(filters);
       setCampaigns(response.results);
     } catch (error) {
-      toast.error('Failed to load campaigns');
+      toast.error('Échec du chargement des campagnes');
     } finally {
       setIsLoading(false);
     }
@@ -37,10 +38,10 @@ export const CampaignsPage = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Browse Campaigns
+            Parcourir les Campagnes
           </h1>
           <p className="text-gray-600">
-            Support causes that matter to you. Every contribution makes a difference.
+            Soutenez les causes qui vous tiennent à cœur. Chaque contribution fait la différence.
           </p>
         </div>
 
@@ -49,7 +50,7 @@ export const CampaignsPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Category
+                Catégorie
               </label>
               <select
                 value={filters.category || ''}
@@ -61,10 +62,10 @@ export const CampaignsPage = () => {
                 }
                 className="input-field"
               >
-                <option value="">All Categories</option>
+                <option value="">Toutes les Catégories</option>
                 {Object.values(CampaignCategory).map((cat) => (
                   <option key={cat} value={cat}>
-                    {cat}
+                    {getCategoryLabel(cat)}
                   </option>
                 ))}
               </select>
@@ -72,7 +73,7 @@ export const CampaignsPage = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Sort By
+                Trier par
               </label>
               <select
                 value={filters.ordering || ''}
@@ -81,20 +82,20 @@ export const CampaignsPage = () => {
                 }
                 className="input-field"
               >
-                <option value="-created_at">Newest First</option>
-                <option value="created_at">Oldest First</option>
-                <option value="-current_amount">Most Funded</option>
-                <option value="current_amount">Least Funded</option>
+                <option value="-created_at">Plus récentes d'abord</option>
+                <option value="created_at">Plus anciennes d'abord</option>
+                <option value="-current_amount">Les plus financées</option>
+                <option value="current_amount">Les moins financées</option>
               </select>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Search
+                Rechercher
               </label>
               <input
                 type="text"
-                placeholder="Search campaigns..."
+                placeholder="Rechercher des campagnes..."
                 value={filters.search || ''}
                 onChange={(e) =>
                   setFilters({ ...filters, search: e.target.value })
@@ -110,7 +111,7 @@ export const CampaignsPage = () => {
           <Loading />
         ) : campaigns.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">No campaigns found</p>
+            <p className="text-gray-600 text-lg">Aucune campagne trouvée</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
