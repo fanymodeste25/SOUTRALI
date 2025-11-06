@@ -8,11 +8,20 @@ import { useAuthStore } from './stores/authStore';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
+import { ForgotPasswordPage } from './pages/auth/ForgotPasswordPage';
 import { CampaignsPage } from './pages/campaigns/CampaignsPage';
 import { CampaignDetailPage } from './pages/campaigns/CampaignDetailPage';
 import { CreateCampaignPage } from './pages/campaigns/CreateCampaignPage';
 import { DonatePage } from './pages/payment/DonatePage';
+import { PaymentVerifyPage } from './pages/payment/PaymentVerifyPage';
 import { OrganizerDashboard } from './pages/dashboard/OrganizerDashboard';
+import { HowItWorksPage } from './pages/HowItWorksPage';
+import { AboutPage } from './pages/AboutPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { HelpPage } from './pages/HelpPage';
+import { ContactPage } from './pages/ContactPage';
+import { PrivacyPage } from './pages/PrivacyPage';
+import { TermsPage } from './pages/TermsPage';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 import { UserRole } from './types';
 
@@ -67,11 +76,20 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/campaigns" element={<CampaignsPage />} />
           <Route path="/campaigns/:id" element={<CampaignDetailPage />} />
           <Route path="/donate/:id" element={<DonatePage />} />
+          <Route path="/payment/verify/:transactionId" element={<PaymentVerifyPage />} />
+          <Route path="/how-it-works" element={<HowItWorksPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/help" element={<HelpPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
 
           {/* Protected Routes */}
+          <Route path="/profile" element={<ProfilePage />} />
           <Route
             path="/dashboard"
             element={
