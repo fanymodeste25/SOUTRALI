@@ -1,0 +1,57 @@
+[
+  {
+    "model": "blog.blogcategory",
+    "pk": 1,
+    "fields": {
+      "name": "Histoires Inspirantes",
+      "slug": "histoires-inspirantes",
+      "description": "Découvrez les histoires de réussite et de solidarité de notre communauté",
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "blog.blogcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Impact Social",
+      "slug": "impact-social",
+      "description": "L'impact de vos contributions sur les communautés africaines",
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "blog.blogcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Conseils et Guides",
+      "slug": "conseils-et-guides",
+      "description": "Conseils pour créer et gérer vos campagnes de collecte de fonds",
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "blog.blogcategory",
+    "pk": 4,
+    "fields": {
+      "name": "Actualités Soutrali",
+      "slug": "actualites-soutrali",
+      "description": "Les dernières nouvelles et mises à jour de la plateforme Soutrali",
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "blog.blogcategory",
+    "pk": 5,
+    "fields": {
+      "name": "Éducation et Formation",
+      "slug": "education-et-formation",
+      "description": "Articles sur l'éducation, les bourses et les opportunités de formation",
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  }
+]
