@@ -88,23 +88,26 @@ def send_verification_email(user_id, token):
     try:
         user = User.objects.get(id=user_id)
 
-        # TODO: Generate actual verification URL
-        verification_url = f"https://soutrali.com/verify-email?token={token}"
+        # Generate verification URL using frontend URL from settings
+        frontend_url = getattr(settings, 'FRONTEND_URL', 'http://localhost:5173')
+        verification_url = f"{frontend_url}/verify-email?token={token}"
 
-        subject = 'Verify your email address'
+        subject = 'Vérifiez votre adresse email - Soutrali'
         message = f"""
-        Hello {user.first_name},
+        Bonjour {user.first_name},
 
-        Please verify your email address by clicking the link below:
+        Merci de vous être inscrit sur Soutrali !
+
+        Veuillez vérifier votre adresse email en cliquant sur le lien ci-dessous :
 
         {verification_url}
 
-        This link will expire in 7 days.
+        Ce lien expirera dans 7 jours.
 
-        If you didn't create an account, you can ignore this email.
+        Si vous n'avez pas créé de compte, vous pouvez ignorer cet email.
 
-        Best regards,
-        The Soutrali Team
+        Cordialement,
+        L'équipe Soutrali
         """
 
         send_email_task.delay(
@@ -200,3 +203,70 @@ def cleanup_old_audit_logs():
 
     except Exception as e:
         logger.error(f"Failed to cleanup audit logs: {str(e)}", exc_info=True)
+
+
+@shared_task
+def notify_admins_kyc_submission(user_id):
+    """Notify admins when a KYC is submitted."""
+    from apps.users.models import User
+    from apps.core.models import Notification
+
+    try:
+        user = User.objects.get(id=user_id)
+        admins = User.objects.filter(role=User.Role.ADMIN, is_active=True)
+
+        for admin in admins:
+            notification = Notification.objects.create(
+                recipient=admin,
+                title='Nouvelle soumission KYC',
+                message=f'{user.get_full_name()} ({user.email}) a soumis ses documents KYC pour vérification.',
+                notification_type=Notification.Type.KYC_SUBMISSION
+            )
+
+            # Send email notification if admin has email notifications enabled
+            if admin.email_notifications:
+                send_notification_email.delay(str(notification.id))
+
+        logger.info(f"Admins notified of KYC submission by user {user.email}")
+
+    except User.DoesNotExist:
+        logger.error(f"User {user_id} not found for KYC notification")
+    except Exception as e:
+        logger.error(f"Failed to notify admins of KYC submission: {str(e)}", exc_info=True)
+
+
+@shared_task
+def notify_user_kyc_review(user_id, status, rejection_reason=''):
+    """Notify user of KYC review decision."""
+    from apps.users.models import User
+    from apps.core.models import Notification
+
+    try:
+        user = User.objects.get(id=user_id)
+
+        if status == User.KYCStatus.APPROVED:
+            title = 'KYC Approuvé'
+            message = 'Félicitations ! Votre vérification d\'identité a été approuvée. Vous pouvez maintenant créer des campagnes.'
+            notification_type = Notification.Type.KYC_APPROVED
+        else:  # REJECTED
+            title = 'KYC Rejeté'
+            message = f'Votre vérification d\'identité a été rejetée. Raison: {rejection_reason}'
+            notification_type = Notification.Type.KYC_REJECTED
+
+        notification = Notification.objects.create(
+            recipient=user,
+            title=title,
+            message=message,
+            notification_type=notification_type
+        )
+
+        # Send email notification if user has email notifications enabled
+        if user.email_notifications:
+            send_notification_email.delay(str(notification.id))
+
+        logger.info(f"User {user.email} notified of KYC review: {status}")
+
+    except User.DoesNotExist:
+        logger.error(f"User {user_id} not found for KYC review notification")
+    except Exception as e:
+        logger.error(f"Failed to notify user of KYC review: {str(e)}", exc_info=True)

@@ -85,7 +85,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             expires_at=timezone.now() + timedelta(days=7)
         )
 
-        # TODO: Send verification email via Celery task
+        # Send verification email via Celery task
+        from apps.core.tasks import send_verification_email
+        send_verification_email.delay(str(user.id), token)
 
         return user
 
@@ -219,7 +221,9 @@ class KYCSubmissionSerializer(serializers.Serializer):
         user.kyc_submitted_at = timezone.now()
         user.save()
 
-        # TODO: Notify admins via Celery task
+        # Notify admins via Celery task
+        from apps.core.tasks import notify_admins_kyc_submission
+        notify_admins_kyc_submission.delay(str(user.id))
 
         return user
 
@@ -259,7 +263,13 @@ class KYCReviewSerializer(serializers.Serializer):
 
         user.save()
 
-        # TODO: Notify user via Celery task
+        # Notify user via Celery task
+        from apps.core.tasks import notify_user_kyc_review
+        notify_user_kyc_review.delay(
+            str(user.id),
+            self.validated_data['status'],
+            user.kyc_rejection_reason
+        )
 
         return user
 

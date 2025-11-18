@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Layout } from '../../components/common/Layout';
 import { Mail, ArrowLeft, CheckCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { authService } from '../../services/auth.service';
 
 export function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -14,13 +15,11 @@ export function ForgotPasswordPage() {
     setIsLoading(true);
 
     try {
-      // TODO: Implement password reset API call
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
-      console.log('Password reset requested for:', email);
+      await authService.requestPasswordReset(email);
       setIsSubmitted(true);
       toast.success('Email de réinitialisation envoyé !');
-    } catch (error) {
-      toast.error('Une erreur est survenue. Veuillez réessayer.');
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || 'Une erreur est survenue. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
     }

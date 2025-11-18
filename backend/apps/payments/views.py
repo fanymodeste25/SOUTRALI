@@ -334,7 +334,9 @@ class RefundViewSet(viewsets.ModelViewSet):
             initiated_by=request.user
         )
 
-        # TODO: Initiate refund with provider via Celery task
+        # Initiate refund with provider via Celery task
+        from apps.payments.tasks import process_refund
+        process_refund.delay(str(refund.id))
 
         # Log refund request
         AuditLog.objects.create(

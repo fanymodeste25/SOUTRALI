@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/common/Layout';
 import { CheckCircle, XCircle, Loader2, ArrowLeft } from 'lucide-react';
+import { paymentService } from '../../services/payment.service';
+import type { Payment } from '../../types';
 
 type PaymentStatus = 'verifying' | 'success' | 'failed' | 'pending';
 
@@ -17,23 +19,28 @@ export function PaymentVerifyPage() {
   });
 
   useEffect(() => {
-    // Simulate payment verification API call
     const verifyPayment = async () => {
       try {
-        // TODO: Replace with actual API call
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        const payment: Payment = await paymentService.verify(transactionId!);
 
-        // Mock response
+        // Update payment details
         setPaymentDetails({
-          amount: 10000,
-          campaignTitle: 'Construction d\'une école',
-          campaignId: '123',
-          transactionId: transactionId || '',
+          amount: parseFloat(payment.amount),
+          campaignTitle: payment.campaign?.title || '',
+          campaignId: payment.campaign?.id || '',
+          transactionId: payment.transaction_id,
         });
 
-        // Simulate random status for demo
-        const statuses: PaymentStatus[] = ['success', 'failed', 'pending'];
-        setStatus(statuses[0]); // Always success for demo
+        // Map payment status to UI status
+        if (payment.status === 'SUCCESS' || payment.status === 'COMPLETED') {
+          setStatus('success');
+        } else if (payment.status === 'FAILED' || payment.status === 'CANCELLED') {
+          setStatus('failed');
+        } else if (payment.status === 'PENDING' || payment.status === 'PROCESSING') {
+          setStatus('pending');
+        } else {
+          setStatus('failed');
+        }
       } catch (error) {
         setStatus('failed');
       }

@@ -46,6 +46,18 @@ export const authService = {
     await api.post('/users/password/change/', data);
   },
 
+  async requestPasswordReset(email: string): Promise<void> {
+    await api.post('/users/password/reset/', { email });
+  },
+
+  async resetPassword(data: {
+    token: string;
+    new_password: string;
+    new_password_confirm: string;
+  }): Promise<void> {
+    await api.post('/users/password/reset/confirm/', data);
+  },
+
   async submitKYC(data: {
     id_type: string;
     id_number: string;
